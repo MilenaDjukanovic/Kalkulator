@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+<script type = "text/javascript">
+ function izracunaj(){
+        var b1 = parseFloat(document.getElementById("b1").value)
+        var b2 = parseFloat(document.getElementById("b2").value)
+    
+        var operacija = document.getElementById("operacija").value
+    
+        if(operacija === "sabiranje"){
+            document.getElementById("rezultat").value = b1 + b2;
+        }
+    
+        if(operacija === "oduzimanje"){
+            document.getElementById("rezultat").value = b1 - b2;
+        }
+    
+        if(operacija === "mnozenje"){
+            document.getElementById("rezultat").value = b1 * b2;
+        }
+    
+        if(operacija === "deljenje"){
+            document.getElementById("rezultat").value = b1 / b2;
+        }
+    }
+
+
+</script>
+<script data-dapp-detection="">
+    (function() {
+      let alreadyInsertedMetaTag = false
+    
+      function __insertDappDetected() {
+        if (!alreadyInsertedMetaTag) {
+          const meta = document.createElement('meta')
+          meta.name = 'dapp-detected'
+          document.head.appendChild(meta)
+          alreadyInsertedMetaTag = true
+        }
+      }
+    
+      if (window.hasOwnProperty('web3')) {
+        // Note a closure can't be used for this var because some sites like
+        // www.wnyc.org do a second script execution via eval for some reason.
+        window.__disableDappDetectionInsertion = true
+        // Likely oldWeb3 is undefined and it has a property only because
+        // we defined it. Some sites like wnyc.org are evaling all scripts
+        // that exist again, so this is protection against multiple calls.
+        if (window.web3 === undefined) {
+          return
+        }
+        __insertDappDetected()
+      } else {
+        var oldWeb3 = window.web3
+        Object.defineProperty(window, 'web3', {
+          configurable: true,
+          set: function (val) {
+            if (!window.__disableDappDetectionInsertion)
+              __insertDappDetected()
+            oldWeb3 = val
+          },
+          get: function () {
+            if (!window.__disableDappDetectionInsertion)
+              __insertDappDetected()
+            return oldWeb3
+          }
+        })
+      }
+    })()</script>
+</head>
+<body>
+
+    <h2>JavaScript kalkulator</h2>
+    <select id="operacija">
+    <option value="sabiranje">Sabiranje</option>
+    <option value="oduzimanje">Oduzimanje</option>
+    <option value="mnozenje">Mnozenje</option>
+    <option value="deljenje">Deljenje</option>
+    </select>
+    <br><br>
+    Broj 1: <input type="text" ,="" id="b1" maxlength="7">
+    <br><br>
+    Broj 2: <input type="text" ,="" id="b2" maxlength="7">
+    <br><br>
+    <input type="button" value="IZRACUNAJ" onclick="izracunaj()">
+    <br><br>
+    Rezultat: <input type="text" ,="" id="rezultat">
+    
+    <script>
+    </script>
+    
+    
+    </body>
+
